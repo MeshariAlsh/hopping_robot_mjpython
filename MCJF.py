@@ -19,6 +19,10 @@ XML = """
                 <joint name="pendulum" type="hinge" axis=" 0 1 0"/>
                 <geom type="cylinder" rgba=" 0 .9 .5 1" fromto="0 0 0.1 0 0 .6" size="0.04"/>  
             </body> 
+            <body>
+                <joint name="pendulum2" type="hinge" axis=" 0 1 0"/>
+                <geom type="cylinder" rgba=" 0 .9 .5 1" fromto="0 0 0.5 0 0 .12" size="0.1"/>  
+            </body> 
         </body>
     </worldbody>
 

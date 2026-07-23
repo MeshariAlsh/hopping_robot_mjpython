@@ -19,26 +19,30 @@ XML = """
         <light diffuse=" .5 .5 .5" pos=" 0 0 3" dir="0 0 -1" />
         <geom type="plane" material="checkard" size=" 3 3 3" />
 
-        <body pos="0 0 .20">
-            <joint name="slide" type="slide" axis=" 1 0 0"/>
+        <body pos="0 0 .90">
+            <joint name="free" type="free" />
             <geom type="box" size=" .2 .2 .2" rgba=" 0 .9 .9 1"/>
-            <body>
-                <joint name="pendulum" type="hinge" axis=" 0 1 0"/>
-                <geom type="cylinder" rgba=" 0 .9 .5 1" fromto="0 0 0.1 0 0 .6" size="0.04"/>  
+
+            <body pos="0 .1 -.2">
+                <joint name="thigh" type="hinge" axis=" 0 1 0"/>
+                <geom type="cylinder" rgba=" 0 .9 .5 1" fromto="0 0 0 0 0 -.6" size="0.04"/> 
             </body> 
+
+            <body pos="0 -.1 -.2">
+                <joint name="thigh2" type="hinge" axis=" 0 1 0"/>
+                <geom type="cylinder" rgba=" 0 .9 .5 1" fromto="0 0 0 0 0 -.6" size="0.04"/> 
+            </body> 
+            
         </body>
     </worldbody>
 
-    <actuator>
-        <motor joint="slide" name="slide"/>
-    </actuator>
 </mujoco>
 """
 
 m = mujoco.MjModel.from_xml_string(XML)
 d = mujoco.MjData(m)
 
-d.ctrl[0] = 1
+#d.ctrl[0] = 1
 
 
 with mujoco.viewer.launch_passive(m, d) as viewer:
